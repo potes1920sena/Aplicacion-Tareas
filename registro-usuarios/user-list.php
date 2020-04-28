@@ -1,8 +1,8 @@
 <?php
 
-    include('database.php');
+include("../conexion/database.php");
 
-    $query = "SELECT * FROM tareas";
+    $query = "SELECT * FROM usuario";
     $result = mysqli_query($connection, $query);
     
     if(!$result) {
@@ -13,8 +13,11 @@
     while($row = mysqli_fetch_array($result)) {
         $json[] = array(
         'name' => $row['name'],
-        'description' => $row['description'],
-        'id' => $row['id']
+        'surname' => $row['surname'],
+        'email' => $row['email'],
+        'phone' => $row['phone'],
+        'user' => $row['user'],
+        'nit' => $row['nit']
         );
     }
     $jsonstring = json_encode($json);

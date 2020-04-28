@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
-    <title>App Task</title>
-</head>
+<?php
+    include("../librerias/styles.php");
+    ?>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Pendant Task Admin</a>
-        <a href="../tabladinamica/index.php" class="navbar-warning lm-auto">Inicio</a>
+        <img src="../img/logo2.png" alt="">
+        <a href="#" class="navbar-brand">Tareas Pendientes</a>
         <ul class="navbar-nav ml-auto">
+            <div class="navbar navbar-expand-lg navbar-right bg-right"> 
+                <a href="../registro-usuarios/" class="navbar-warning lm-auto">Usuarios</a>
+                <a href="../tareas-pendientes/" class="navbar-warning lm-auto">Agenda</a>
+                <a href="#" class="navbar-warning lm-auto">Soporte</a>
+                <a href="#" class="navbar-warning lm-auto">Cerrar</a>
+            </div>
             <form class="form-inline my-2 my-lg-0">
                 <input type="search" id="search" class="form-control mr-sm-2" 
                 placeholder="Search Your Task">
@@ -66,11 +69,5 @@
         </div>
     </div>
 
-
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"
-    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-    crossorigin="anonymous">
-</script>
-    <script src="app.js"></script>
 </body>
 </html>

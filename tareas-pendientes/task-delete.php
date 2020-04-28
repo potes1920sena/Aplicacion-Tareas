@@ -1,6 +1,6 @@
 <?php
 
-    include('database.php'); //recibe conexion
+include("../conexion/database.php"); //recibe conexion
     if(isset($_POST['id'])){ //recibe id del cliente
         $id = $_POST['id'];
     $query = "DELETE FROM tareas WHERE id = $id"; // consulta en la base de datos
