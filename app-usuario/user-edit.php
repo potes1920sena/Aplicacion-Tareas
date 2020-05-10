@@ -8,10 +8,9 @@ $name = $_POST['name'];
 $surname = $_POST['surname'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$user = $_POST['user'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT, array("cost"=> 12));
 
-    $query = "UPDATE usuario SET name= '$name', 
-    surname= '$surname', email= '$email', phone= '$phone', user= '$user' 
+    $query = "UPDATE usuario SET name= '$name', surname= '$surname', email= '$email', phone= '$phone', password= '$password' 
     WHERE id= '$id' "; 
 
     $result = mysqli_query($connection, $query);

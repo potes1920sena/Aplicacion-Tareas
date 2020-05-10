@@ -1,8 +1,6 @@
 <?php
     include("../conexion/database.php");
 
-    $message ="";
-
     if(isset($_POST['nit'])) {
         $nit = $_POST['nit'];
         $name = $_POST['name'];

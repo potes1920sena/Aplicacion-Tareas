@@ -35,7 +35,7 @@ try{
 
     }else{
         $message = "Sorry, Those credentials do not match ";
-        header('Location: /aplicacion-tareas/signup.php');
+        header('Location: /aplicacion-tareas/login.php');
     }
 
 }catch(Exception $e){
