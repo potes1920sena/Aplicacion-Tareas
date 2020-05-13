@@ -31,11 +31,11 @@ try{
 
     if($contador > 0){
         $_SESSION['user_id']=$registro['email'];
-        header('Location: /aplicacion-tareas/app-tareas');
+        header('Location: /aplicacion-tareas/app-usuario');
 
     }else{
         $message = "Sorry, Those credentials do not match ";
-        header('Location: /aplicacion-tareas/login.php');
+        header('Location: /aplicacion-tareas/signup.php');
     }
 
 }catch(Exception $e){
