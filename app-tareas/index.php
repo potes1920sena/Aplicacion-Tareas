@@ -40,52 +40,63 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+               <!--<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+                <button type="submit" class="btn btn-outline-success">Busqueda</button>
             </form>
         </div>
     </nav>
-    <div class="container p-4">
+    <div class="jumbotron">
         <div class="row">
-            <div class="col-md 5">
+            <div class="col-md 4">
                 <div class="card">
                     <div class="card-body">
                         <form id="task-form">
                         <div id="ocultar" class="alert alert-dismissible alert-info">
                                 <button type="text" class="close" data-dismiss="alert">&times;</button>
-                                <h4 class="alert-heading">ACTUALIZAR TAREAS</h4>
+                                <h4 class="alert-heading" id="action-form"></h4>
                             </div>
                             <input type="hidden" id="taskId">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Task Name" class="form-control">
+                                <input type="text" id="autor" placeholder="Task Autor" class="form-control" require>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" id="date" placeholder="Task Date" class="form-control" require>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="title" placeholder="Task Title" class="form-control" require>
                             </div>
                             <div class="form-group">
                                 <textarea id="description" cols="30" rows="10" class="form-control"
-                                    placeholder="Task Description">
+                                    placeholder="Task Description" require>
                             </textarea>
                             </div>
                             <button type="submit" class="btn btn-primary 
-                            btn-block text-center">
-                                Save Task</button>
+                            btn-block text-center">Save</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="jumbotron">
                     <div class="card my-4" id="task-result">
                         <div class="card-body">
                             <ul id="container"></ul>
                         </div>
                     </div>
+                    <div id="open" class="alert alert-dismissible alert-info">Agendar</div>
                     <table class="table table-hover table-sm">
                         <thead id="cabecera">
                             <tr class="table-info">
-                                <td>Id</td>
-                                <td>Name</td>
-                                <td>Description</td>
-                                <td>Remove</td>
+                                <td>N°</td>
+                                <td>Autor</td>
+                                <td>Fecha</td>
+                                <td>Titulo</td>
+                                <td>Evento</td>
+                                <td>Enviar</td>
+                                <td>Editar</td>
+                                <td>Eliminar</td>
                             </tr>
                         </thead>
                         <div class="container">
-                        <tbody id="tasks"></tbody>
+                            <tbody id="tasks"></tbody>
                         </div>
                     </table>
                 </div>

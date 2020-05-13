@@ -1,7 +1,7 @@
 <?php
     include("conexion/database.php");
 
-    if(isset($_POST['nit']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password'])) {
+    if(isset($_POST['nit']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password'])) {
         $nit = $_POST['nit'];
         $name = $_POST['name'];
         $surname = $_POST['surname'];

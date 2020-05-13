@@ -5,7 +5,7 @@ include("../conexion/database.php");
     $search = $_POST['search'];
 
     if(!empty($search)) {
-        $query = "SELECT * FROM tareas WHERE name LIKE '$search%'";
+        $query = "SELECT * FROM tareas WHERE title LIKE '$search%'";
         $result = mysqli_query($connection, $query);
         if(!$result) {
             die('Query Error'. mysqli_error($connection)); 
@@ -14,7 +14,9 @@ include("../conexion/database.php");
         $json = array();
         while($row = mysqli_fetch_array($result)) {
             $json[] = array(
-                'name' => $row['name'],
+                'autor' => $row['autor'],
+                'date' => $row['date'],
+                'title' => $row['title'],
                 'description' => $row['description'],
                 'id' => $row['id']
             );

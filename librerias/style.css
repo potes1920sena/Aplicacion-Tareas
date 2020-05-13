@@ -4,10 +4,9 @@ body{
 }
 .inicio {
     background-image: url('../img/fondo.png');   
-    width: 80% auto;
+    width: 100% auto;
     height:100vh;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px;
     background-size: cover;
 }
 

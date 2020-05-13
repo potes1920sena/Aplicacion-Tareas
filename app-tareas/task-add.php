@@ -1,11 +1,14 @@
 <?php
     include("../conexion/database.php");
 
-    if(isset($_POST['name'])) {
-        $name = $_POST['name'];
+    if(isset($_POST['autor'])) {
+        $autor = $_POST['autor'];
+        $date = $_POST['date'];
+        $title = $_POST['title'];
         $description = $_POST['description'];
-        $query = "INSERT INTO tareas(name, description)
-        VALUES ('$name','$description')";
+       
+       $query = "INSERT INTO tareas(autor, date, title, description)
+        VALUES('$autor','$date','$title','$description')";
         $result = mysqli_query($connection, $query);
         if(!$result) {
             die('Query Failed.');

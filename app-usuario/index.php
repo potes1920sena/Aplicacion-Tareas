@@ -44,16 +44,18 @@
             </form>
         </div>
     </nav>
-    <div class="container" p-4>
+    <form>
+    <div id="ocultar" class="alert alert-dismissible alert-info">
+        <button type="text" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">ACTUALIZAR DATOS</h4>
+    </div>
+    </form>
+    <div class="jumbotron">
         <div class="row">
             <div class="col-md 5">
                 <div class="card">
                     <div class="card-body">
                         <form id="task-form">
-                            <div id="ocultar" class="alert alert-dismissible alert-info">
-                                <button type="text" class="close" data-dismiss="alert">&times;</button>
-                                <h4 class="alert-heading">ACTUALIZAR DATOS</h4>
-                            </div>
                             <input type="hidden" id="taskId">
                             <div class="form-group">
                                 <input type="text" id="nit" placeholder="Registra Identidad" class="form-control"
@@ -85,7 +87,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="jumbotron">
                     <div class="card my-4" id="task-result">
                         <div class="card-body">
                             <ul id="container"></ul>
@@ -106,7 +108,7 @@
                             </tr>
                         </thead>
                         <div class="container">
-                        <tbody id="tasks"></tbody>
+                            <tbody id="tasks"></tbody>
                         </div>
                     </table>
                 </div>

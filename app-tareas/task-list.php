@@ -2,7 +2,7 @@
 
 include("../conexion/database.php");
 
-    $query = "SELECT * FROM tareas";
+    $query = "SELECT * FROM tareas order by id";
     $result = mysqli_query($connection, $query);
     
     if(!$result) {
@@ -12,7 +12,9 @@ include("../conexion/database.php");
     $json = array();
     while($row = mysqli_fetch_array($result)) {
         $json[] = array(
-        'name' => $row['name'],
+        'autor' => $row['autor'],
+        'date' => $row['date'],
+        'title' => $row['title'],
         'description' => $row['description'],
         'id' => $row['id']
         );

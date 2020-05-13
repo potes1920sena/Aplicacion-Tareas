@@ -14,16 +14,17 @@ $(document).ready(function () {
           let tasks = JSON.parse(response);
           let template = "";
           tasks.forEach((task) => {
-            template += `<li>
-
-                        ${task.id}
-                        ${task.name}
-                        ${task.surname}
-
-                    </li>`;
+            template += ` <li> 
+                            N°: ${task.id}
+                            Nit: ${task.nit} <br>  
+                            Nombre: ${task.name} ${task.surname}<br>
+                            Telefono: ${task.phone}<br>
+                            Correo: ${task.email}     
+                        </li>`;
           });
           $("#container").html(template);
           $("#task-result").show();
+          $("#task-form").hide();
         },
       });
     }
@@ -129,6 +130,7 @@ $(document).ready(function () {
       $("#password").val(task.password);
       $("#taskId").val(task.id);
       edit = true;
+      $("#task-result").hide();
       $("#task-form").show();
     });
   });

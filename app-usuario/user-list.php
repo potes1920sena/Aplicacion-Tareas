@@ -2,7 +2,7 @@
 
 include("../conexion/database.php");
 
-    $query = "SELECT * FROM usuario";
+    $query = "SELECT * FROM usuario ORDER BY id";
     $result = mysqli_query($connection, $query);
     
     if(!$result) {

@@ -3,10 +3,12 @@
 include("../conexion/database.php");
 
     $id = $_POST['id'];
-    $name = $_POST['name'];
+    $autor = $_POST['autor'];
+    $date = $_POST['date'];
+    $title = $_POST['title'];
     $description = $_POST['description'];
 
-    $query = "UPDATE tareas SET name = '$name', description = '$description' 
+    $query = "UPDATE tareas SET autor = '$autor', date = '$date', title = '$title', description = '$description' 
     WHERE id = '$id' "; 
 
     $result = mysqli_query($connection, $query);
