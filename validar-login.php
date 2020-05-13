@@ -31,7 +31,7 @@ try{
 
     if($contador > 0){
         $_SESSION['user_id']=$registro['email'];
-        header('Location: /aplicacion-tareas/app-usuario');
+        header('Location: /aplicacion-tareas/app-tareas');
 
     }else{
         $message = "Sorry, Those credentials do not match ";
