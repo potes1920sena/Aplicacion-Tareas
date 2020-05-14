@@ -1,11 +1,4 @@
 <?php
- session_start();
-
-    if (isset($_SESSION['user_id'])) {
-        header('Location: /aplicacion-tareas');
-    }
-
-
 try{
    $login = htmlentities(addslashes($_POST["login"]));
    $password = htmlentities(addslashes($_POST["password"]));
@@ -16,6 +9,7 @@ try{
    $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    $sql = "SELECT password FROM usuario WHERE email = :login";
+   mysqli_close($connection);
    $resultado = $base->prepare($sql);
    $resultado->execute(array(":login"=>$login));
         $message = "";
@@ -30,9 +24,9 @@ try{
     }
 
     if($contador > 0){
-        $_SESSION['user_id']=$registro['email'];
-        header('Location: /aplicacion-tareas/app-usuario');
-
+                session_start();
+                $_SESSION['user_id'] = $resultado;
+                header('Location: /aplicacion-tareas/app-usuario');
     }else{
         $message = "Sorry, Those credentials do not match ";
         header('Location: /aplicacion-tareas/signup.php');
@@ -41,8 +35,6 @@ try{
 }catch(Exception $e){
 	
 	die("Error: " . $e->getMessage());
-	
-	
 	
 }
 

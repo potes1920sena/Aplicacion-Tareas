@@ -1,15 +1,16 @@
+<?php
+session_start();
+if(isset($_SESSION['user_id'])){
+    header('Location: ');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="librerias/bootstrap.css">
-    <link rel="stylesheet" href="librerias/bootstrap.min.css">
-    <link rel="stylesheet" href="librerias/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous">
-    </script>
+<?php
+include("librerias/estilos1.php");
+?>
     <script src="app.js"></script>
     <title>SignUp</title>
 </head>
@@ -35,17 +36,17 @@
                     <form action="validar-login.php" id="usr-id" method="post">
 
                         <br>
-                        <div class="form-group" align="center">
+                        <div class="form-group" style="align:center">
                             <p class="text-success">Usuario</p>
                             <input class="form-control" type="text" id="login" name="login">
                             <span id="login_error" class="text-danger"></span>
                         </div>
-                        <div class="form-group" align="center">
+                        <div class="form-group"  style="align:center">
                             <p class="text-success">Contraseña</p>
                             <input class="form-control" type="password" id="password" name="password" autocomplete>
                             <span id="password_error" class="text-danger"></span>
                         </div>
-                        <div class="form-group" align="center">
+                        <div class="form-group"  style="align:center">
                             <input type="submit" name="save" id="save" value="Save"
                                 class="btn btn-info">
                     </form>

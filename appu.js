@@ -1,11 +1,13 @@
 $(document).ready(function () {
   let edit = false;
+  let titles = "LISTA DE USUARIOS";
+  $("#action-form").html(titles);
   fetchTasks();
   $("#task-result").hide();
   $("#task-form").hide();
-  $("#search").keyup(function (e) {
-    if ($("#search").val()) {
-      let search = $("#search").val();
+  $("#search_id").keyup(function (e) {
+    if ($("#search_id").val()) {
+      let search = $("#search_id").val();
       $.ajax({
         url: "user-search.php",
         type: "POST",
@@ -15,11 +17,37 @@ $(document).ready(function () {
           let template = "";
           tasks.forEach((task) => {
             template += ` <li> 
-                            N°: ${task.id}
-                            Nit: ${task.nit} <br>  
-                            Nombre: ${task.name} ${task.surname}<br>
-                            Telefono: ${task.phone}<br>
-                            Correo: ${task.email}     
+                            <tr><td>N°:</td><td>${task.id}</td><td> -/- </td></tr>
+                            <tr><td>Nit:</td><td>${task.nit}</td><td> -/- </td></tr>
+                            <tr><td>Nombre:<td><td>${task.name} ${task.surname}<td> -/- <td></td><tr>
+                            <tr><td>Telefono:<td><td>${task.phone}<td><td> -/- </td><tr>
+                            <tr><td>E-Mail:<td><td>${task.email}<td><td></td><tr>     
+                        </li>`;
+          });
+          $("#container").html(template);
+          $("#task-result").show();
+          $("#task-form").hide();
+        },
+      });
+    }
+  });
+  $("#search_name").keyup(function (e) {
+    if ($("#search_name").val()) {
+      let search = $("#search_name").val();
+      $.ajax({
+        url: "nit-search.php",
+        type: "POST",
+        data: { search },
+        success: function (response) {
+          let tasks = JSON.parse(response);
+          let template = "";
+          tasks.forEach((task) => {
+               template += ` <li> 
+                        <tr><td>N°:</td><td>${task.id}</td><td> -/- </td></tr>
+                        <tr><td>Nit:</td><td>${task.nit}</td><td> -/- </td></tr>
+                        <tr><td>Nombre:<td><td>${task.name} ${task.surname}<td> -/- <td></td><tr>
+                        <tr><td>Telefono:<td><td>${task.phone}<td><td> -/- </td><tr>
+                        <tr><td>E-Mail:<td><td>${task.email}<td><td></td><tr>    
                         </li>`;
           });
           $("#container").html(template);
@@ -44,8 +72,8 @@ $(document).ready(function () {
     let url = edit === false ? "user-add.php" : "user-edit.php";
 
     $.post(url, postData, function (response) {
+      $("#task-form").hide();
       $("#mensaje").html(response);
-      console.log(response);
       fetchTasks();
       $("#task-form").trigger("reset");
     });
@@ -65,7 +93,7 @@ $(document).ready(function () {
                             <tr taskId="${task.id}">
                                 <td>${task.id}</td>
                                 <td>${task.nit}</td>
-                                <td><a href="#" class="user-item">${task.name}</a></td>
+                                <td>${task.name}</td>
                                 <td>${task.surname}</td>
                                 <td>${task.email}</td>
                                 <td>${task.phone}</td>
@@ -92,8 +120,46 @@ $(document).ready(function () {
     });
   }
 
+  function mostrarHora(){
+
+    momentoActual= new Date();
+    hora = momentoActual.getHours(00);
+    minuto = momentoActual.getMinutes(00);
+    segundo = momentoActual.getSeconds(00);
+    
+    horaActual = hora  + " : " + minuto  + " : " +  segundo ;
+    
+    $("#hour").val(horaActual);
+    }
+
+  function mostrarFecha() {
+
+    var now = new Date();
+
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+    $("#date").val(today);
+}
+
   $(document).on("click", "#ocultar", function () {
     $("#task-form").hide();
+    edit="";
+  });
+
+  $(document).on("click", "#ocultar", function () {
+    $("#task-form").hide();
+    edit="";
+  });
+  $(document).on("click", "#open", function () {
+    titles = "NUEVO USUARIO";
+    $("#action-form").html(titles);
+    mostrarHora();
+    mostrarFecha();
+    $("#task-form").show();
+    edit = false;
   });
 
   $(document).on("click", ".user-delete", function () {
@@ -101,7 +167,6 @@ $(document).ready(function () {
       let element = $(this)[0].parentElement.parentElement;
       let id = $(element).attr("taskId");
       $.post("user-delete.php", { id }, function (response) {
-        console.log(response);
         fetchTasks();
       });
     }
@@ -129,7 +194,10 @@ $(document).ready(function () {
       $("#phone").val(task.phone);
       $("#password").val(task.password);
       $("#taskId").val(task.id);
+      titles = "ACTUALIZAR DATOS";
+      $("#action-form").html(titles);
       edit = true;
+      $("#action-form").html(titles);
       $("#task-result").hide();
       $("#task-form").show();
     });

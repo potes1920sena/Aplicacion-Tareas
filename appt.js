@@ -1,6 +1,7 @@
 $(document).ready(function () {
   let edit = false;
-  let titles = "";
+  let titles = "LISTA DE EVENTOS";
+  $("#action-form").html(titles);
   fetchTasks();
   $("#task-result").hide();
   $("#task-form").hide();
@@ -16,30 +17,10 @@ $(document).ready(function () {
           let template = "";
           tasks.forEach((task) => {
             template += `<li>
-                     <tr>
-                     <td>
-                         N°:
-                     </td>
-                     <td>
-                         ${task.id}
-                     </td>
-                    </tr>
-                     <td>
-                         Autor:
-                         <td>
-                         ${task.autor}
-                         <tr>
-                     <td>
-                         Titulo:
-                         <td>
-                         ${task.title}
-                         <tr>
-                     <td>
-                         Fecha:
-                         <td>
-                         ${task.date}
-                         <tr>
-                     <tr>
+                     <tr><td>N°:</td><td>${task.id}</td><td> -/- </td></tr>
+                     <tr><td>Autor:</td><td>${task.autor}</td><td> -/- </td></tr>
+                     <tr><td>Titulo:<td><td>${task.title}</td><td> -/- </td></tr>
+                     <tr><td>Fecha:<td><td>${task.date}</td><td></td></tr>
                     </li>`;
           });
           $("#container").html(template);
@@ -54,6 +35,7 @@ $(document).ready(function () {
     const postData = {
       autor: $("#autor").val(),
       date: $("#date").val(),
+      hour: $("#hour").val(),
       title: $("#title").val(),
       description: $("#description").val(),
       id: $("#taskId").val(),
@@ -86,8 +68,8 @@ $(document).ready(function () {
                     <td>${task.id}</td>
                     <td>${task.autor}</td>
                     <td>${task.date}</td>
+                    <td>${task.hour}</td>
                     <td>${task.title}</td>
-                    <td>${task.description}</td>
                     <td>
                     <a href="#" class="task-mail btn">
                     <img src="../iconos/gmail.png">
@@ -111,13 +93,40 @@ $(document).ready(function () {
     });
   }
 
+  function mostrarHora(){
+
+    momentoActual= new Date();
+    hora = momentoActual.getHours(00);
+    minuto = momentoActual.getMinutes(00);
+    segundo = momentoActual.getSeconds(00);
+    
+    horaActual = hora  + " : " + minuto  + " : " +  segundo ;
+    
+    $("#hour").val(horaActual);
+    }
+
+  function mostrarFecha() {
+
+    var now = new Date();
+
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+    $("#date").val(today);
+}
+
   $(document).on("click", "#ocultar", function () {
     $("#task-form").hide();
+    edit="";
   });
 
   $(document).on("click", "#open", function () {
-    titles = "Nuevo Evento";
+    titles = "NUEVO EVENTO";
     $("#action-form").html(titles);
+    mostrarHora();
+    mostrarFecha();
     $("#task-form").show();
     edit = false;
   });
@@ -149,11 +158,14 @@ $(document).ready(function () {
       const task = JSON.parse(response);
       $("#autor").val(task.autor);
       $("#date").val(task.date);
+      $("#hour").val(task.hour);
       $("#title").val(task.title);
       $("#description").val(task.description);
       $("#taskId").val(task.id);
       edit = true;
-      titles = "Actualizar Datos";
+      titles = "ACTUALIZAR DATOS";
+      mostrarHora();
+      mostrarFecha();
       $("#action-form").html(titles);
       $("#task-result").hide();
       $("#task-form").show();

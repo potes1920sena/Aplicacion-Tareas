@@ -6,6 +6,6 @@ session_unset();
 
 session_destroy();
 
-header('Location: ../aplicacion-tareas');
+header('Location: ../aplicacion-tareas/login.php');
 
 ?>

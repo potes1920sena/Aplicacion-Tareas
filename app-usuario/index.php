@@ -1,15 +1,17 @@
+<?php
+session_start();
+if(isset($_SESSION['user_id'])){
+    header('location: ../login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../librerias/bootstrap.css">
-    <link rel="stylesheet" href="../librerias/bootstrap.min.css">
-    <link rel="stylesheet" href="../librerias/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous">
-    </script>
+    <?php
+include("../librerias/estilos2.php");
+?>
     <script src="../appu.js"></script>
     <title>Registry-User</title>
 </head>
@@ -19,12 +21,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#"><img src="../iconos/logo1.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
+            <ul class="nav nav-tabs">
                 <li class="nav-item active">
                     <a class="nav-link" href="../app-usuario">Usuarios<span class="sr-only">(current)</span></a>
                 </li>
@@ -35,49 +37,87 @@
                     <a class="nav-link" href="#">Información</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">Evaluaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="../logout.php">Salir</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+        </div>
+        <div class="dropdown nb-3">
+            <a href="" class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuEnlace2"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img src="../iconos/avatar.png" class="rounded-circle"></a>
+
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuEnlace2">
+                <a class="dropdown-item" href="../app-usuario">Usuario</a>
+                <a class="dropdown-item" href="/aplicacion-tareas/app-tareas">Agenda</a>
+                <a class="dropdown-item" href="#">Información</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="../logout.php">Cerrar Sesión</a>
+            </div>
         </div>
     </nav>
-    <form>
-    <div id="ocultar" class="alert alert-dismissible alert-info">
-        <button type="text" class="close" data-dismiss="alert">&times;</button>
-        <h4 class="alert-heading">ACTUALIZAR DATOS</h4>
+
+    <div class="card-body">
+        <form class="form-inline my-2 my-lg-0" style="float:right;">
+            <input id="search_id" class="form-control mr-sm-2" type="text" placeholder="Identification">
+            <button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" style="float:right;">
+            <input id="search_name" class="form-control mr-sm-2" type="text" placeholder="User Name">
+            <button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>
+        </form>
     </div>
-    </form>
+
     <div class="jumbotron">
         <div class="row">
-            <div class="col-md 5">
-                <div class="card">
+            <div class="col-md 3">
+                <div class="card" style="margin-left:10em;margin-right:10em;">
+                    <div id="ocultar" class="alert alert-dismissible alert-info">
+                        <button type="text" class="close" data-dismiss="alert">&times;</button>
+                        <h4 class="alert-heading" id=action-form></h4>
+                    </div>
                     <div class="card-body">
                         <form id="task-form">
                             <input type="hidden" id="taskId">
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    Id</a>
                                 <input type="text" id="nit" placeholder="Registra Identidad" class="form-control"
                                     required>
                             </div>
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    Name</a>
                                 <input type="text" id="name" placeholder="Registra Nombres" class="form-control"
                                     required>
                             </div>
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    Surname</a>
                                 <input type="text" id="surname" placeholder="Registra Apellidos" class="form-control"
                                     required>
                             </div>
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    E-Mail</a>
                                 <input type="text" id="email" placeholder="Registra E-Mail" class="form-control"
                                     required>
                             </div>
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    Phone</a>
                                 <input type="text" id="phone" placeholder="Registra Movil o Telefono"
                                     class="form-control" required>
                             </div>
-                            <div class="form-group">
+                            <div class="list-group" style="float:left; margin:5px;">
+                                <a href="#" class="list-group-item list-group-item-action active">
+                                    Password</a>
                                 <input type="password" id="password" placeholder="Ingresa un Password"
                                     class="form-control" required autocomplete>
                             </div>
@@ -93,6 +133,7 @@
                             <ul id="container"></ul>
                         </div>
                     </div>
+                    <div id="open" class="alert alert-dismissible alert-info">Nuevo Usuario</div>
                     <table class="table table-hover table-sm">
                         <thead id="cabecera">
                             <tr class="table-info">

@@ -14,16 +14,16 @@
         $result = mysqli_query($connection, $query);
         if(!$result) {
             ?>
-            <h3><span>FALLO EL REGISTRO</span></h3>
-            <h4 class="bad">ya existe un usuario con esa Identificación"</h4>
-            <?php
+<h3><span>FALLO EL REGISTRO</span></h3>
+<h4 class="bad">ya existe un usuario con esa Identificación"</h4>
+<?php
         }else{
         ?>
-        <h3 class="ok">¡Te has inscrito correctamente!</h3>
-        <p class="bad">se te ha enviado un correo de Verificación</p>
-        <div id="correo_Bienvenida"></div>
-        <?php
+<h3 class="ok">¡Te has inscrito correctamente!</h3>
+<p class="bad">se te ha enviado un correo de Verificación</p>
+<div id="correo_Bienvenida"></div>
+<?php
         }
     }
-
+    mysqli_close($connection);
 ?>

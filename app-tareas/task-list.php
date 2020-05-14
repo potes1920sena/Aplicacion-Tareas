@@ -14,6 +14,7 @@ include("../conexion/database.php");
         $json[] = array(
         'autor' => $row['autor'],
         'date' => $row['date'],
+        'hour' => $row['hour'],
         'title' => $row['title'],
         'description' => $row['description'],
         'id' => $row['id']
