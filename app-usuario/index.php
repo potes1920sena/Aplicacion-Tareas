@@ -1,9 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION['user_id'])){
-    header('location: ../login.php');
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +15,7 @@ include("../librerias/estilos2.php");
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#"><img src="../iconos/logo1.png" alt=""></a>
+        <a class="navbar-brand" href="#"><img src="../iconos/logo1.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
             aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,23 +30,40 @@ include("../librerias/estilos2.php");
                     <a class="nav-link" href="/aplicacion-tareas/app-tareas">Agenda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Información</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Evaluaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Nosotros</a>
+                    <a class="nav-link" href="#">Notas</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="true">Dropdown</a>
+                    <div class="dropdown-menu" style="">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../logout.php">Salir</a>
+                    <a class="nav-link" id="salir" href="../logout.php">Salir</a>
                 </li>
             </ul>
         </div>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="search_id" class="form-control mr-sm-2" type="text" placeholder="Search Identification">
+            <!--<button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>-->
+        </form>
+        <!-- <form class="form-inline my-2 my-lg-0" style="float:right;">
+                            <input id="search_name" class="form-control mr-sm-2" type="text" placeholder="User Name">
+                            <button type="submit" class="btn btn-outline-success"><img
+                                    src="../iconos/lupa.png"></button>-->
+        </form>
         <div class="dropdown nb-3">
-            <a href="" class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuEnlace2"
+            <a href="#" class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuEnlace2"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <img src="../iconos/avatar.png" class="rounded-circle"></a>
+                    <img src="../iconos/avatar.png" class="rounded-circle"></a>
 
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuEnlace2">
@@ -61,22 +74,12 @@ include("../librerias/estilos2.php");
                 <a class="dropdown-item" href="../logout.php">Cerrar Sesión</a>
             </div>
         </div>
+        </div>
     </nav>
-
-    <div class="card-body">
-        <form class="form-inline my-2 my-lg-0" style="float:right;">
-            <input id="search_id" class="form-control mr-sm-2" type="text" placeholder="Identification">
-            <button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>
-        </form>
-        <form class="form-inline my-2 my-lg-0" style="float:right;">
-            <input id="search_name" class="form-control mr-sm-2" type="text" placeholder="User Name">
-            <button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>
-        </form>
-    </div>
-
-    <div class="jumbotron">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md 3">
+
                 <div class="card" style="margin-left:10em;margin-right:10em;">
                     <div id="ocultar" class="alert alert-dismissible alert-info">
                         <button type="text" class="close" data-dismiss="alert">&times;</button>
@@ -138,7 +141,6 @@ include("../librerias/estilos2.php");
                         <thead id="cabecera">
                             <tr class="table-info">
                                 <td>Id</td>
-                                <td>Nit</td>
                                 <td>Nombres</td>
                                 <td>Apellidos</td>
                                 <td>Correo</td>

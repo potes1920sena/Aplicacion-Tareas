@@ -14,7 +14,7 @@ $(document).ready(function () {
       $("#task-form").trigger("reset");
     });
 
-    e.preventDefault();
+   /* e.preventDefault();
     $.ajax({
       url: "validar-login.php",
       method: "POST",
@@ -41,13 +41,11 @@ $(document).ready(function () {
         $("#process").css("display", "none");
         $(".progress-bar").css("width", "0%");
         $("#save").attr("disabled", false);
-        $("#success_message").html(
-          "<div class='alert alert-success'>Data Saved</div>"
-        );
+        $("#success_message").html("<div class='alert alert-success'>Data Saved</div>");
         setTimeout(function () {
           $("#success_message").html("");
         }, 5000);
       }
-    }
-  });
+    }*/
+  }); 
 });

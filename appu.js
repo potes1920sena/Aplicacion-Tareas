@@ -1,10 +1,12 @@
 $(document).ready(function () {
   let edit = false;
   let titles = "LISTA DE USUARIOS";
-  $("#action-form").html(titles);
+  $("#action-form").html(titles); // titulos del formulario
   fetchTasks();
   $("#task-result").hide();
   $("#task-form").hide();
+
+  // busqueda por identificacion...
   $("#search_id").keyup(function (e) {
     if ($("#search_id").val()) {
       let search = $("#search_id").val();
@@ -27,10 +29,13 @@ $(document).ready(function () {
           $("#container").html(template);
           $("#task-result").show();
           $("#task-form").hide();
+          e.preventDefault();
         },
       });
     }
   });
+
+  // busqueda por Nombres...
   $("#search_name").keyup(function (e) {
     if ($("#search_name").val()) {
       let search = $("#search_name").val();
@@ -42,7 +47,7 @@ $(document).ready(function () {
           let tasks = JSON.parse(response);
           let template = "";
           tasks.forEach((task) => {
-               template += ` <li> 
+            template += ` <li> 
                         <tr><td>N°:</td><td>${task.id}</td><td> -/- </td></tr>
                         <tr><td>Nit:</td><td>${task.nit}</td><td> -/- </td></tr>
                         <tr><td>Nombre:<td><td>${task.name} ${task.surname}<td> -/- <td></td><tr>
@@ -53,11 +58,13 @@ $(document).ready(function () {
           $("#container").html(template);
           $("#task-result").show();
           $("#task-form").hide();
+          e.preventDefault();
         },
       });
     }
   });
 
+  // trae los datos del formulario
   $("#task-form").submit(function (e) {
     const postData = {
       nit: $("#nit").val(),
@@ -68,7 +75,7 @@ $(document).ready(function () {
       password: $("#password").val(),
       id: $("#taskId").val(),
     };
-
+    // consulta la Accion a realizar
     let url = edit === false ? "user-add.php" : "user-edit.php";
 
     $.post(url, postData, function (response) {
@@ -81,6 +88,8 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+
+  // lista de los registros almacenados
   function fetchTasks() {
     $.ajax({
       url: "user-list.php",
@@ -92,7 +101,6 @@ $(document).ready(function () {
           template += `
                             <tr taskId="${task.id}">
                                 <td>${task.id}</td>
-                                <td>${task.nit}</td>
                                 <td>${task.name}</td>
                                 <td>${task.surname}</td>
                                 <td>${task.email}</td>
@@ -100,14 +108,14 @@ $(document).ready(function () {
                                 <td>
                                 <a href="#" class="user-mail btn">
                                 <img src="../iconos/gmail.png">
-                            </a>
-                            </td>
-                            <td>
-                            <a href="#" class="user-item btn">
-                            <img src="../iconos/editado.png">
-                            </a>
-                            </td>
-                            <td>
+                                </a>
+                                </td>
+                                <td>
+                                <a href="#" class="user-item btn">
+                                <img src="../iconos/editado.png">
+                                </a>
+                                </td>
+                                <td>
                                 <a href="#" class="user-delete btn ">
                                 <img src="../iconos/remove.png">
                                 </a>
@@ -119,40 +127,39 @@ $(document).ready(function () {
       },
     });
   }
+  // imprime fecha y hora en los registros nuevos y modificaciones
+  function mostrarHora() {
+    momentoActual = new Date();
+    hora = momentoActual.getHours();
+    minuto = momentoActual.getMinutes();
+    segundo = momentoActual.getSeconds();
 
-  function mostrarHora(){
+    horaActual = hora + " : " + minuto + " : " + segundo;
 
-    momentoActual= new Date();
-    hora = momentoActual.getHours(00);
-    minuto = momentoActual.getMinutes(00);
-    segundo = momentoActual.getSeconds(00);
-    
-    horaActual = hora  + " : " + minuto  + " : " +  segundo ;
-    
     $("#hour").val(horaActual);
-    }
+  }
 
   function mostrarFecha() {
-
     var now = new Date();
 
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    var today = now.getFullYear() + "-" + month + "-" + day;
 
     $("#date").val(today);
-}
+  }
 
   $(document).on("click", "#ocultar", function () {
     $("#task-form").hide();
-    edit="";
+    edit = "";
   });
 
   $(document).on("click", "#ocultar", function () {
     $("#task-form").hide();
-    edit="";
+    edit = "";
   });
+
   $(document).on("click", "#open", function () {
     titles = "NUEVO USUARIO";
     $("#action-form").html(titles);
@@ -161,7 +168,7 @@ $(document).ready(function () {
     $("#task-form").show();
     edit = false;
   });
-
+  // elimina los datos selccionados
   $(document).on("click", ".user-delete", function () {
     if (confirm("¿Are you sure you want to delete it?")) {
       let element = $(this)[0].parentElement.parentElement;
@@ -171,7 +178,7 @@ $(document).ready(function () {
       });
     }
   });
-
+  // envia email al contacto seleccionado
   $(document).on("click", ".user-mail", function () {
     if (confirm("¿Are you sure you want to send emails to all users?")) {
       let element = $(this)[0].parentElement.parentElement;
@@ -181,7 +188,7 @@ $(document).ready(function () {
       $.post("user-masivos.php", { id }, function (response) {});
     }
   });
-
+  // envia datos del mysql al formulario
   $(document).on("click", ".user-item", function () {
     let element = $(this)[0].parentElement.parentElement;
     let id = $(element).attr("taskId");
@@ -202,4 +209,11 @@ $(document).ready(function () {
       $("#task-form").show();
     });
   });
+
+  //  Manejo de sessiones
+  
+
+
+
+
 });

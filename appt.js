@@ -23,9 +23,11 @@ $(document).ready(function () {
                      <tr><td>Fecha:<td><td>${task.date}</td><td></td></tr>
                     </li>`;
           });
+
           $("#container").html(template);
           $("#task-result").show();
           $("#task-form").hide();
+          e.preventDefault();
         },
       });
     }
@@ -96,9 +98,9 @@ $(document).ready(function () {
   function mostrarHora(){
 
     momentoActual= new Date();
-    hora = momentoActual.getHours(00);
-    minuto = momentoActual.getMinutes(00);
-    segundo = momentoActual.getSeconds(00);
+    hora = momentoActual.getHours();
+    minuto = momentoActual.getMinutes();
+    segundo = momentoActual.getSeconds();
     
     horaActual = hora  + " : " + minuto  + " : " +  segundo ;
     

@@ -1,9 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION['user_id'])){
-    header('location: ../login.php');
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +16,7 @@ include("../librerias/estilos2.php");
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#"><img src="../iconos/logo1.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-        aria-haspopup="true" aria-expanded="true" aria-label="Toggle navigation">
+            aria-haspopup="true" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -33,10 +29,10 @@ include("../librerias/estilos2.php");
                     <a class="nav-link" href="/aplicacion-tareas/app-tareas">Agenda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Información</a>
+                    <a class="nav-link" href="#">Evaluaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Evaluaciones</a>
+                    <a class="nav-link" href="#">Notas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Nosotros</a>
@@ -46,7 +42,10 @@ include("../librerias/estilos2.php");
                 </li>
             </ul>
         </div>
-
+        <form class="form-inline my-2 my-lg-0">
+            <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search Task">
+           <!-- <button type="submit" class="btn btn-outline-success"><img src="../iconos/lupa.png"></button>-->
+        </form>
         <div class="dropdown nb-3">
             <a href="" class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuEnlace2"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -62,7 +61,7 @@ include("../librerias/estilos2.php");
             </div>
         </div>
     </nav>
-    <div class="jumbotron">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md 3">
 
@@ -71,11 +70,6 @@ include("../librerias/estilos2.php");
                         <button type="text" class="close" data-dismiss="alert">&times;</button>
                         <h4 class="alert-heading" id="action-form"></h4>
                     </div>
-                    <form class="form-inline my-2 my-lg-0">
-                            <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search">
-                            <button type="submit" class="btn btn-outline-success"><img
-                                    src="../iconos/lupa.png"></button>
-                        </form>
                     <div class="card-body">
                         <form id="task-form">
                             <div>
