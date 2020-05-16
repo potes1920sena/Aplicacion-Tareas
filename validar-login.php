@@ -12,7 +12,7 @@ try{
 
    $contador=0;
 
-   $base = new PDO("mysql:host=localhost; dbname=app-tareas" , "root" , "");
+   $base = new PDO("mysql:host=mysqli.000webhost.com; dbname=id13720419_app_tareas" , "id13720419_oscar" , "?VR2>2y>B@40[6{/");
    $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    $sql = "SELECT password FROM usuario WHERE email = :login";
